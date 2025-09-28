@@ -1,13 +1,30 @@
 import styles from '../styles/Home.module.css';
+import "antd/dist/antd.css";
+import { Button, Popover } from "antd";
 
 function Home() {
+
+const popoverContent = (
+  <div className={styles.popoverContent}>
+    <span>Movie 1</span>
+    <span>Movie 1</span>
+    <span>Movie 1</span>
+    <span>Movie 1</span>
+  </div>
+)
+
   return (
-    <div>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-      </main>
+    <div className={styles.main}>
+      <div className={styles.toppart}>
+      <img src='https://cdn.vectorstock.com/i/1000v/00/61/neon-cinema-night-logo-vector-21560061.jpg' alt="Logo" height='100px' width='100px' />
+      <div className={styles.title}>My Movies</div>
+      <Popover
+        title='Liked movies'
+        trigger="click"
+        content={popoverContent}>
+        <Button>4 movie(s)</Button>
+      </Popover>
+      </div>
     </div>
   );
 }
