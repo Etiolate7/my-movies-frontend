@@ -13,19 +13,20 @@ function Home() {
   const [moviesData, setMoviesData] = useState([]);
 
   useEffect(() => {
-fetch('http://localhost:3000/movies')
-.then(response => response.json())
-.then(data => {
-  const formattedData = data.movies.map((movie) => {
-    const poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
-    let overview = movie.overview;
-    if (overview.length > 200) {
-      overview = overview.substring(0, 200) + "...";
-    }
-    return {title: movie.title, poster, voteAverage: movie.vote_average, voteCount: movie.vote_count, overview,}
-  })
-  setMoviesData(formattedData)
-})
+    fetch('http://localhost:3000/movies')
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        const formattedData = data.movies.map((movie) => {
+          const poster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+          let overview = movie.overview;
+          if (overview.length > 200) {
+            overview = overview.substring(0, 200) + "...";
+          }
+          return { title: movie.title, poster, voteAverage: movie.vote_average, voteCount: movie.vote_count, overview, }
+        })
+        setMoviesData(formattedData)
+      })
   }, [])
 
   const updateLikedMovies = movieTitle => {
@@ -46,7 +47,9 @@ fetch('http://localhost:3000/movies')
     const isLiked = likedMovies.find(movie => movie === data.title)
 
     return (
-      <Movies key={i}
+      <Movies 
+      key={i}
+    
         title={data.title}
         overview={data.overview}
         poster={data.poster}
@@ -56,9 +59,7 @@ fetch('http://localhost:3000/movies')
         isLiked={isLiked} />
     )
   });
-  for (let i = 0; i < 10; i++) {
-    movies.push(<Movies key={i} />)
-  }
+
 
 
   const likedMoviesPopover = likedMovies.map((data, i) => {
