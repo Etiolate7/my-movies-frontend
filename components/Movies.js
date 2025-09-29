@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/Movies.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar, faHeart, faVideo } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
 function Movies(props) {
@@ -25,7 +25,7 @@ function Movies(props) {
     let style = {}
 
     if (i < note) {
-      style = { color: 'orange' };
+      style = { color: '#1E6AC7' };
     }
 
     personalStars.push(
@@ -45,6 +45,17 @@ function Movies(props) {
           <span className={styles.vote}>{stars} ({props.voteCount})</span>
           <span>
             {personalStars} ({note})
+          </span>
+          <span>
+            <FontAwesomeIcon
+            icon={faVideo}
+            className='watchCount'/>
+            ({watchCount})
+          </span>
+          <span>
+            <FontAwesomeIcon
+            icon={faHeart}
+            className='likeCount'/>
           </span>
         </div>
       </div>
