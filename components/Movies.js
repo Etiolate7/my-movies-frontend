@@ -9,7 +9,11 @@ function Movies(props) {
 const stars = [];
 
 for (let i=0; i < 10; i++) {
-    stars.push(<FontAwesomeIcon key={i} icon={faStar}/>)
+  let style = {};
+  if (i < props.voteAverage - 1){
+    style= {color: 'orange'}
+  }
+    stars.push(<FontAwesomeIcon key={i} icon={faStar} style={style}/>)
 }
 
   return (
