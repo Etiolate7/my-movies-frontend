@@ -59,10 +59,7 @@ const isLiked = likedMovies.find(movie => movie === data.title)
   })
   const popoverContent = (
     <div className={styles.popoverContent}>
-      <span>Movie 1</span>
-      <span>Movie 1</span>
-      <span>Movie 1</span>
-      <span>Movie 1</span>
+      {likedMoviesPopover}
     </div>
   )
 
