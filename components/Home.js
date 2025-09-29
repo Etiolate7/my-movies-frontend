@@ -3,6 +3,8 @@ import "antd/dist/antd.css";
 import { Button, Popover } from "antd";
 import Movies from './Movies';
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
  const moviesData = [
     {title: 'Forrest Gump', poster: 'https://static.wikia.nocookie.net/wikidoublage/images/a/a8/Forrest_Gump_-_Affiche_VOD.jpg/revision/latest/scale-to-width-down/2000?cb=20231122113919&path-prefix=fr', voteAverage:9.2, voteCount: 23_756, overview: "hsvhcjhdvjhv" },
@@ -46,6 +48,15 @@ const isLiked = likedMovies.find(movie => movie === data.title)
     movies.push(<Movies key={i}/>)
   }
 
+
+  const likedMoviesPopover = likedMovies.map((data, i) => {
+    return (
+      <div key={i} className={styles.likedMoviesContainer}>
+        <span className='likedmovies'>{data}</span>
+        <FontAwesomeIcon icon={faCircleXmark} />
+      </div>
+    )
+  })
   const popoverContent = (
     <div className={styles.popoverContent}>
       <span>Movie 1</span>
