@@ -53,7 +53,7 @@ const isLiked = likedMovies.find(movie => movie === data.title)
     return (
       <div key={i} className={styles.likedMoviesContainer}>
         <span className='likedmovies'>{data}</span>
-        <FontAwesomeIcon icon={faCircleXmark} />
+        <FontAwesomeIcon icon={faCircleXmark} className={styles.crossIcon} onClick={() => updateLikedMovies(data)}/>
       </div>
     )
   })
