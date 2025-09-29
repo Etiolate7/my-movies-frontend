@@ -7,7 +7,6 @@ import { useState } from 'react';
 function Movies(props) {
 
   const [watchCount, setWatchCount] = useState(0);
-  const [like, setLike] = useState(false);
   const [note, setNote] = useState(0);
 
   const stars = [];
@@ -43,11 +42,11 @@ function Movies(props) {
   }
 
   const handleLikeMovie = () => {
-    setLike(!like);
+    props.updateLikedMovies(props.title);
   }
 
   let heartIcon = {};
-  if (like) {
+  if (props.isLiked) {
     heartIcon = {color: 'pink'}
   }
 

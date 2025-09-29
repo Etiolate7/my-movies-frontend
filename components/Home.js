@@ -2,10 +2,9 @@ import styles from '../styles/Home.module.css';
 import "antd/dist/antd.css";
 import { Button, Popover } from "antd";
 import Movies from './Movies';
+import { useState } from 'react';
 
-function Home() {
-
-  const moviesData = [
+ const moviesData = [
     {title: 'Forrest Gump', poster: 'https://static.wikia.nocookie.net/wikidoublage/images/a/a8/Forrest_Gump_-_Affiche_VOD.jpg/revision/latest/scale-to-width-down/2000?cb=20231122113919&path-prefix=fr', voteAverage:9.2, voteCount: 23_756, overview: "hsvhcjhdvjhv" },
     {title: '8 Mile', poster: 'https://m.media-amazon.com/images/M/MV5BMzFhZDhjMDAtZWJlZS00ZWUyLWFlZGMtYTcwZjFlODcyMGE2XkEyXkFqcGc@._V1_.jpg', voteAverage:9.2, voteCount: 23_756, overview: "hsvhcjhdvjhv" },
     {title: 'The Green Mile', poster: 'https://www.rogerebert.com/wp-content/uploads/2024/03/The-Green-Mile.jpg', voteAverage:9.2, voteCount: 23_756, overview: "hsvhcjhdvjhv" },
@@ -13,14 +12,34 @@ function Home() {
     {title: 'Chihiro', poster: 'https://fr.web.img5.acsta.net/c_310_420/medias/nmedia/00/02/36/71/chihiro.jpg', voteAverage:9.2, voteCount: 23_756, overview: "hsvhcjhdvjhv" }
   ]
 
+function Home() {
+
+const [likedMovies, setLikedMovies] = useState([]);
+
+const updateLikedMovies = movieTitle => {
+
+  const isLiked = likedMovies.find(movie => movie --- movieTitle);
+
+  if (isLiked) {
+    setLikedMovies(likedMovies.filter(movie => movie !== movieTitle));
+  } else {
+    setLikedMovies([...likedMovies, movieTitle]);
+  }
+}
+
   const movies = moviesData.map((data, i) => {
+
+const isLiked = likedMovies.find(movie => movie === data.title)
+
     return(
       <Movies key={i}
       title={data.title}
       overview={data.overview}
       poster={data.poster}
       voteCount={data.voteCount}
-      voteAverage={data.voteAverage}/>
+      voteAverage={data.voteAverage}
+      updateLikedMovies={updateLikedMovies}
+      isLiked={isLiked}/>
     )
   });
   for (let i = 0; i < 10; i++) {
@@ -46,7 +65,7 @@ function Home() {
           trigger="click"
           content={popoverContent}
           className={styles.popover}>
-          <Button>4 movie(s)</Button>
+          <Button>{likedMovies.length} movie(s)</Button>
         </Popover>
       </div>
       <div className={styles.annonce}>
