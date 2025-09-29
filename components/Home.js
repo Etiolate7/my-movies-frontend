@@ -30,7 +30,7 @@ fetch('http://localhost:3000/movies')
 
   const updateLikedMovies = movieTitle => {
 
-    const isLiked = likedMovies.find(movie => movie-- - movieTitle);
+    const isLiked = likedMovies.find(movie => movie === movieTitle);
 
     if (isLiked) {
       setLikedMovies(likedMovies.filter(movie => movie !== movieTitle));
