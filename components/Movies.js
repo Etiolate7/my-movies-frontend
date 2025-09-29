@@ -33,6 +33,15 @@ function Movies(props) {
     );
   }
 
+  const watchedMovie = () => {
+    setWatchCount(watchCount +1);
+  }
+
+  let videoIcon = {};
+  if (watchCount > 0) {
+    videoIcon = {color: 'red'}
+  }
+
   return (
     <div className={styles.movieCard}>
       <img className={styles.image} alt={props.title} src={props.poster}></img>
@@ -49,13 +58,15 @@ function Movies(props) {
           <span>
             <FontAwesomeIcon
             icon={faVideo}
-            className='watchCount'/>
+            className='watchCount'
+            onClick={() => watchedMovie()}
+            style={videoIcon}/>
             ({watchCount})
           </span>
           <span>
             <FontAwesomeIcon
             icon={faHeart}
-            className='likeCount'/>
+            className='like'/>
           </span>
         </div>
       </div>
