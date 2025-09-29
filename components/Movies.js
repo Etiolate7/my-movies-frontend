@@ -33,13 +33,22 @@ function Movies(props) {
     );
   }
 
-  const watchedMovie = () => {
+  const handleWatchedMovie = () => {
     setWatchCount(watchCount +1);
   }
 
   let videoIcon = {};
   if (watchCount > 0) {
     videoIcon = {color: 'red'}
+  }
+
+  const handleLikeMovie = () => {
+    setLike(!like);
+  }
+
+  let heartIcon = {};
+  if (like) {
+    heartIcon = {color: 'pink'}
   }
 
   return (
@@ -59,14 +68,16 @@ function Movies(props) {
             <FontAwesomeIcon
             icon={faVideo}
             className='watchCount'
-            onClick={() => watchedMovie()}
+            onClick={() => handleWatchedMovie()}
             style={videoIcon}/>
             ({watchCount})
           </span>
           <span>
             <FontAwesomeIcon
             icon={faHeart}
-            className='like'/>
+            className='like'
+            onClick={() => handleLikeMovie()}
+            style={heartIcon}/>
           </span>
         </div>
       </div>
